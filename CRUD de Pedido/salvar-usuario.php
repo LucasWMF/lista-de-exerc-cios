@@ -27,7 +27,7 @@ if (!isset($_REQUEST['acao']) || empty($_REQUEST['acao'])) {
 switch ($_REQUEST["acao"]) {
     case "cadastrar":
         $num_pedido = $_POST["num_pedido"];
-        $data_pedido = $_POST["data"];
+        $data_pedido = $_POST["data_pedido"];
         $cliente = $_POST["cliente"];
 
         $sql = "INSERT INTO pedidos (num_pedido, data_pedido, cliente) VALUES ('{$num_pedido}', '{$data_pedido}', '{$cliente}')";
@@ -38,22 +38,22 @@ switch ($_REQUEST["acao"]) {
             echo "
                 <div class='col-md-5'>
                 <div class='alert alert-success mt-2 alert-dismissible fade show' role='alert'>
-                    Cadastro Realizado com Sucesso
+                    Pedido Registrado com Sucesso
                 </div>
-                <a href='?page=listar' class='btn btn-success btn-lg btn-block'>Listar Usuários</a>
+                <a href='?page=listar' class='btn btn-success btn-lg btn-block'>Listar Pedidos</a>
                 <br><br>
-                <a href='?page=novo' class='btn btn-warning btn-lg btn-block'>Cadastrar Novo Usuário</a>
+                <a href='?page=novo' class='btn btn-warning btn-lg btn-block'>Registrar Novo Pedido</a>
             </div>
                 ";
         } else {
             echo "
                 <div class='col-md-5'>
                     <div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                        Não foi possível realizar seu cadastro.
+                        Não foi possível registrar seu pedido.
                     </div>
-                    <a href='?page=listar' class='btn btn-success btn-lg btn-block'>Listar Usuários</a>
+                    <a href='?page=listar' class='btn btn-success btn-lg btn-block'>Listar Pedidos</a>
                     <br><br>
-                    <a href='?page=novo' class='btn btn-warning btn-lg btn-block'>Cadastrar Novo Usuário</a>
+                    <a href='?page=novo' class='btn btn-warning btn-lg btn-block'>Registrar Novo Pedido</a>
                 </div>";
         }
         break;
@@ -61,10 +61,11 @@ switch ($_REQUEST["acao"]) {
     case "editar":
         // Processa o formulário
         $num_pedido = $_POST["num_pedido"];
-        $date = $_POST["date"];
+        $data_pedido = $_POST["data"];
         $cliente = $_POST["cliente"];
 
-        // Atualiza senha apenas se fornecida
+        $sql = "INSERT INTO pedidos (num_pedido, data_pedido, cliente) VALUES ('{$num_pedido}', '{$data_pedido}', '{$cliente}')";
+
         if (!empty($_POST["senha"])) {
             $senha = password_hash($_POST["senha"], PASSWORD_DEFAULT);
             $sql = "UPDATE usuarios SET nome = '$nome', email = '$email', senha = '$senha', data_nasc = '$data_nasc' WHERE id = $id";
@@ -78,29 +79,29 @@ switch ($_REQUEST["acao"]) {
             echo "
                 <div class='col-md-5'>
                 <div class='alert alert-success mt-2 alert-dismissible fade show' role='alert'>
-                    Dados do Usuário Editados com Sucesso
+                    Dados do Pedido Editados com Sucesso
                 </div>
-                <a href='?page=listar' class='btn btn-success btn-lg btn-block'>Listar Usuários</a>
+                <a href='?page=listar' class='btn btn-success btn-lg btn-block'>Listar Pedidos</a>
                 <br><br>
-                <a href='?page=novo' class='btn btn-warning btn-lg btn-block'>Cadastrar Novo Usuário</a>
+                <a href='?page=novo' class='btn btn-warning btn-lg btn-block'>Registrar Novo Pedido</a>
             </div>
                 ";
         } else {
             echo "
                 <div class='col-md-5'>
                     <div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                        Não foi Possível Editar os Dados do Usuário.
+                        Não foi Possível Editar os Dados do Pedido.
                     </div>
-                    <a href='?page=listar' class='btn btn-success btn-lg btn-block'>Listar Usuários</a>
+                    <a href='?page=listar' class='btn btn-success btn-lg btn-block'>Listar Pedidos</a>
                     <br><br>
-                    <a href='?page=novo' class='btn btn-warning btn-lg btn-block'>Cadastrar Novo Usuário</a>
+                    <a href='?page=novo' class='btn btn-warning btn-lg btn-block'>Registrar Novo Pedido</a>
                 </div>";
         }
         break;
     case "excluir":
         $id = $_POST['id'];
 
-        $sql = "DELETE FROM usuarios WHERE id = $id";
+        $sql = "DELETE FROM pedidos WHERE id = $id";
 
         $res = $connection->query($sql);
 
@@ -109,9 +110,9 @@ switch ($_REQUEST["acao"]) {
                 <div class='alert alert-success mt-2 alert-dismissible fade show' role='alert'>
                     Usuário deletado com sucesso!
                 </div>
-                <a href='?page=listar' class='btn btn-success btn-lg btn-block'>Listar Usuários</a>
+                <a href='?page=listar' class='btn btn-success btn-lg btn-block'>Listar Pedidos</a>
                 <br><br>
-                <a href='?page=novo' class='btn btn-warning btn-lg btn-block'>Cadastrar Novo Usuário</a>
+                <a href='?page=novo' class='btn btn-warning btn-lg btn-block'>Registrar Novo Pedido</a>
             </div>
                 ";
         } else {
@@ -120,9 +121,9 @@ switch ($_REQUEST["acao"]) {
                     <div class='alert alert-danger alert-dismissible fade show' role='alert'>
                         Não foi Possível Deletar os Dados do Usuário.
                     </div>
-                    <a href='?page=listar' class='btn btn-success btn-lg btn-block'>Listar Usuários</a>
+                    <a href='?page=listar' class='btn btn-success btn-lg btn-block'>Listar Pedidos</a>
                     <br><br>
-                    <a href='?page=novo' class='btn btn-warning btn-lg btn-block'>Cadastrar Novo Usuário</a>
+                    <a href='?page=novo' class='btn btn-warning btn-lg btn-block'>Registrar Novo Pedido</a>
                 </div>";
         }
         break;
@@ -143,7 +144,7 @@ switch ($_REQUEST["acao"]) {
                     Voltar ao Início
                 </a>
                 <a href='?page=listar' class='btn btn-secondary btn-lg'>
-                    Listar Usuários
+                    Listar Pedidos
                 </a>
             </div>
         </div>";

@@ -1,13 +1,13 @@
 <?php
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $id = $_GET['id'];
-    $sql = "SELECT * FROM usuarios WHERE id = $id";
+    $sql = "SELECT * FROM pedidos WHERE id = $id";
     $res = $connection->query($sql);
 
     if ($res && $res->num_rows > 0) {
         $registros = $res->fetch_object();
     } else {
-        echo "Usuário não encontrado!";
+        echo "Pedido não encontrado!";
         exit;
     }
 } else {
@@ -15,7 +15,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     exit;
 }
 ?>
-<?php print $registros->id; ?>
+<!-- <?php print $registros->id; ?> -->
 
 <form action="?page=salvar&id=<?php $registros->id ?>" method="post">
     <input type="hidden" name="acao" value="excluir">

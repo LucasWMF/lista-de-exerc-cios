@@ -6,7 +6,7 @@
         <input type="number" name="num_pedido" class="form-control" placeholder="Numero do Pedido" required autofocus>
     </div>
     <div class="mb-3">
-        <input type="date" name="data" class="form-control" placeholder="Data" required autofocus>
+        <input type="date" name="data_pedido" class="form-control" placeholder="Data de Nascimento" required autofocus>
     </div>
     <div class="mb-3">
         <input type="text" name="cliente" class="form-control" placeholder="Cliente" required autofocus>
