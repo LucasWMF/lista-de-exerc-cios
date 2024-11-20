@@ -47,6 +47,7 @@ switch ($_REQUEST['acao'] ?? '') {
         $stmt->bind_param("s", $searchTerm);
         $stmt->execute();
         $result = $stmt->get_result();
+        // Evita erros ^
 
         if ($result->num_rows > 0) {
             print "<table class='table table-dark table-bordered table-hover text-center'>";

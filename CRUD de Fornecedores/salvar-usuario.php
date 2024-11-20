@@ -1,6 +1,6 @@
 <?php
 if (!isset($_REQUEST['acao']) || empty($_REQUEST['acao'])) {
-    // Exibe a página 404 se a ação não estiver definida ou for inválida
+    // Página Personalizada 404
     echo "
     <div class='d-flex flex-column align-items-center justify-content-center vh-100 bg-light'>
         <div class='text-center'>
@@ -23,7 +23,6 @@ if (!isset($_REQUEST['acao']) || empty($_REQUEST['acao'])) {
     exit;
 }
 
-// Processa as ações
 switch ($_REQUEST["acao"]) {
     case "cadastrar":
         $nome_fornecedor = $_POST["nome_fornecedor"];
@@ -59,7 +58,6 @@ switch ($_REQUEST["acao"]) {
         break;
 
     case "editar":
-        // Processa o formulário
         $id = $_POST["id"];
         $nome_fornecedor = $_POST["nome_fornecedor"];
         $cnpj_fornecedor = $_POST["cnpj_fornecedor"];
@@ -123,7 +121,7 @@ switch ($_REQUEST["acao"]) {
         break;
 
     default:
-        // Exibe erro 404 para ações desconhecidas
+        // Página Personalizada 404
         echo "
         <div class='d-flex flex-column align-items-center justify-content-center vh-100 bg-light'>
             <div class='text-center'>

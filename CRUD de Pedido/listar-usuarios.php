@@ -32,8 +32,13 @@ if (!isset($_POST['acao']) || isset($_POST['acao']) === 'limpar') {
     // echo $campo;
     // echo $termo;
 
-    $sql2 = "SELECT * FROM pedidos  WHERE id LIKE '%$termo%' OR $campo LIKE '%$termo%' ORDER BY id DESC";
-    $result = $connection->query($sql2);
+    $sql2 = "SELECT * FROM pedidos WHERE $campo LIKE ?";
+    $stmt = $connection->prepare($sql2);
+    $searchTerm = "%" . $termo . "%";
+    $stmt->bind_param("s", $searchTerm);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    // Evita erros ^
 
     if ($result->num_rows > 0) {
         print "<table class='table table-dark table-bordered table-hover text-center'>";

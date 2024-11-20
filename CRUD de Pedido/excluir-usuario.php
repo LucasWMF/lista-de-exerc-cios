@@ -15,7 +15,6 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     exit;
 }
 ?>
-<!-- <?php print $registros->id; ?> -->
 
 <form action="?page=salvar&id=<?php $registros->id ?>" method="post">
     <input type="hidden" name="acao" value="excluir">
