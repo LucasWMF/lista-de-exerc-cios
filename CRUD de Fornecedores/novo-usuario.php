@@ -1,15 +1,15 @@
-<h1>Novo Pedido</h1>
+<h1>Novo Fornecedor</h1>
 
 <form action="?page=salvar" method="POST">
     <input type="hidden" name="acao" value="cadastrar">
     <div class="mb-3">
-        <input type="number" name="Nome" class="form-control" placeholder="Nome" required autofocus>
+        <input type="text" name="nome_fornecedor" class="form-control" placeholder="Nome do Fornecedor" required autofocus>
     </div>
     <div class="mb-3">
-        <input type="date" name="Data" class="form-control" placeholder="Data" required autofocus>
+        <input type="text" name="cnpj_fornecedor" class="form-control" placeholder="CNPJ com FORMATAÇÃO do Fornecedor" required autofocus>
     </div>
     <div class="mb-3">
-        <input type="text" name="Cliente" class="form-control" placeholder="Cliente" required autofocus>
+        <input type="tel" name="tel_fornecedor" class="form-control" placeholder="Telefone do Fornecedor" required autofocus>
     </div>
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">Enviar</button>

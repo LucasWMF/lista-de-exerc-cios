@@ -25,7 +25,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         <input type="number" name="num_pedido" class="form-control" placeholder="Numero do Pedido" value="<?php print $registros->num_pedido ?>" required autofocus>
     </div>
     <div class="mb-3">
-        <input type="date" name="data" class="form-control" placeholder="Data" value="<?php print $registros->data_pedido ?>" required autofocus>
+        <input type="date" name="data_pedido" class="form-control" placeholder="Data" value="<?php print $registros->data_pedido ?>" required autofocus>
     </div>
     <div class="mb-3">
         <input type="text" name="cliente" class="form-control" placeholder="Cliente" value="<?php print $registros->cliente ?>" required autofocus>

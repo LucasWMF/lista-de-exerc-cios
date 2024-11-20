@@ -16,7 +16,7 @@ if (!isset($_REQUEST['acao']) || empty($_REQUEST['acao'])) {
             </a>
             <br><br>
             <a href='?page=listar' class='btn btn-secondary btn-lg'>
-                Listar Usuários
+                Listar Fornecedores
             </a>
         </div>
     </div>";
@@ -26,53 +26,46 @@ if (!isset($_REQUEST['acao']) || empty($_REQUEST['acao'])) {
 // Processa as ações
 switch ($_REQUEST["acao"]) {
     case "cadastrar":
-        $nome = $_POST["nome"];
-        $email = $_POST["email"];
-        $senha = password_hash($_POST["senha"], PASSWORD_DEFAULT);
-        $data_nasc = $_POST["data_nasc"];
+        $nome_fornecedor = $_POST["nome_fornecedor"];
+        $cnpj_fornecedor = $_POST["cnpj_fornecedor"];
+        $tel_fornecedor = $_POST["tel_fornecedor"];
 
-        $sql = "INSERT INTO usuarios (nome, email, senha, data_nasc) VALUES ('{$nome}', '{$email}', '{$senha}', '{$data_nasc}')";
+        $sql = "INSERT INTO fornecedores (nome_fornecedor, cnpj_fornecedor, tel_fornecedor) VALUES ('{$nome_fornecedor}', '{$cnpj_fornecedor}', '{$tel_fornecedor}')";
 
         $res = $connection->query($sql);
 
         if ($res == true) {
             echo "
-                <div class='col-md-5'>
+            <div class='col-md-5'>
                 <div class='alert alert-success mt-2 alert-dismissible fade show' role='alert'>
-                    Cadastro Realizado com Sucesso
+                    Cadastro do Fornecedor Realizado com Sucesso
                 </div>
-                <a href='?page=listar' class='btn btn-success btn-lg btn-block'>Listar Usuários</a>
+                <a href='?page=listar' class='btn btn-success btn-lg btn-block'>Listar Fornecedores</a>
                 <br><br>
-                <a href='?page=novo' class='btn btn-warning btn-lg btn-block'>Cadastrar Novo Usuário</a>
+                <a href='?page=novo' class='btn btn-warning btn-lg btn-block'>Cadastrar Novo Fornecedor</a>
             </div>
                 ";
         } else {
             echo "
                 <div class='col-md-5'>
                     <div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                        Não foi possível realizar seu cadastro.
+                        Não foi possível realizar o cadastro do fornecedor.
                     </div>
-                    <a href='?page=listar' class='btn btn-success btn-lg btn-block'>Listar Usuários</a>
+                    <a href='?page=listar' class='btn btn-success btn-lg btn-block'>Listar Fornecedores</a>
                     <br><br>
-                    <a href='?page=novo' class='btn btn-warning btn-lg btn-block'>Cadastrar Novo Usuário</a>
+                    <a href='?page=novo' class='btn btn-warning btn-lg btn-block'>Cadastrar Novo Fornecedor</a>
                 </div>";
         }
         break;
 
     case "editar":
         // Processa o formulário
-        $id = $_POST['id'];
-        $nome = $_POST["nome"];
-        $email = $_POST["email"];
-        $data_nasc = $_POST["data_nasc"];
+        $id = $_POST["id"];
+        $nome_fornecedor = $_POST["nome_fornecedor"];
+        $cnpj_fornecedor = $_POST["cnpj_fornecedor"];
+        $tel_fornecedor = $_POST["tel_fornecedor"];
 
-        // Atualiza senha apenas se fornecida
-        if (!empty($_POST["senha"])) {
-            $senha = password_hash($_POST["senha"], PASSWORD_DEFAULT);
-            $sql = "UPDATE usuarios SET nome = '$nome', email = '$email', senha = '$senha', data_nasc = '$data_nasc' WHERE id = $id";
-        } else {
-            $sql = "UPDATE usuarios SET nome = '$nome', email = '$email', data_nasc = '$data_nasc' WHERE id = $id";
-        }
+        $sql = "UPDATE fornecedores SET nome_fornecedor = '$nome_fornecedor', cnpj_fornecedor = '$cnpj_fornecedor', tel_fornecedor = '$tel_fornecedor' WHERE id = $id";
 
         $res = $connection->query($sql);
 
@@ -80,51 +73,51 @@ switch ($_REQUEST["acao"]) {
             echo "
                 <div class='col-md-5'>
                 <div class='alert alert-success mt-2 alert-dismissible fade show' role='alert'>
-                    Dados do Usuário Editados com Sucesso
+                    Dados do Fornecedor Editados com Sucesso
                 </div>
-                <a href='?page=listar' class='btn btn-success btn-lg btn-block'>Listar Usuários</a>
-                <br><br>
-                <a href='?page=novo' class='btn btn-warning btn-lg btn-block'>Cadastrar Novo Usuário</a>
+                    <a href='?page=listar' class='btn btn-success btn-lg btn-block'>Listar Fornecedores</a>
+                    <br><br>
+                    <a href='?page=novo' class='btn btn-warning btn-lg btn-block'>Cadastrar Novo Fornecedor</a>
             </div>
                 ";
         } else {
             echo "
                 <div class='col-md-5'>
                     <div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                        Não foi Possível Editar os Dados do Usuário.
+                        Não foi Possível Editar os Dados do Fornecedor.
                     </div>
-                    <a href='?page=listar' class='btn btn-success btn-lg btn-block'>Listar Usuários</a>
+                    <a href='?page=listar' class='btn btn-success btn-lg btn-block'>Listar Fornecedores</a>
                     <br><br>
-                    <a href='?page=novo' class='btn btn-warning btn-lg btn-block'>Cadastrar Novo Usuário</a>
+                    <a href='?page=novo' class='btn btn-warning btn-lg btn-block'>Cadastrar Novo Fornecedor</a>
                 </div>";
         }
         break;
     case "excluir":
         $id = $_POST['id'];
 
-        $sql = "DELETE FROM usuarios WHERE id = $id";
+        $sql = "DELETE FROM fornecedores WHERE id = $id";
 
         $res = $connection->query($sql);
 
         if ($res == true) {
             echo "<div class='col-md-5'>
                 <div class='alert alert-success mt-2 alert-dismissible fade show' role='alert'>
-                    Usuário deletado com sucesso!
+                    Fornecedor deletado com sucesso!
                 </div>
-                <a href='?page=listar' class='btn btn-success btn-lg btn-block'>Listar Usuários</a>
+                <a href='?page=listar' class='btn btn-success btn-lg btn-block'>Listar Fornecedores</a>
                 <br><br>
-                <a href='?page=novo' class='btn btn-warning btn-lg btn-block'>Cadastrar Novo Usuário</a>
+                <a href='?page=novo' class='btn btn-warning btn-lg btn-block'>Cadastrar Novo Fornecedor</a>
             </div>
                 ";
         } else {
             echo "
                 <div class='col-md-5'>
                     <div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                        Não foi Possível Deletar os Dados do Usuário.
+                        Não foi Possível Deletar os Dados do Fornecedor.
                     </div>
-                    <a href='?page=listar' class='btn btn-success btn-lg btn-block'>Listar Usuários</a>
-                    <br><br>
-                    <a href='?page=novo' class='btn btn-warning btn-lg btn-block'>Cadastrar Novo Usuário</a>
+                <a href='?page=listar' class='btn btn-success btn-lg btn-block'>Listar Fornecedores</a>
+                <br><br>
+                <a href='?page=novo' class='btn btn-warning btn-lg btn-block'>Cadastrar Novo Fornecedor</a>
                 </div>";
         }
         break;
@@ -145,7 +138,7 @@ switch ($_REQUEST["acao"]) {
                     Voltar ao Início
                 </a>
                 <a href='?page=listar' class='btn btn-secondary btn-lg'>
-                    Listar Usuários
+                    Listar Fornecedores
                 </a>
             </div>
         </div>";

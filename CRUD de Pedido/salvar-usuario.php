@@ -60,18 +60,21 @@ switch ($_REQUEST["acao"]) {
 
     case "editar":
         // Processa o formulário
+        $id = $_POST['id'];
         $num_pedido = $_POST["num_pedido"];
-        $data_pedido = $_POST["data"];
+        $data_pedido = $_POST["data_pedido"];
         $cliente = $_POST["cliente"];
 
-        $sql = "INSERT INTO pedidos (num_pedido, data_pedido, cliente) VALUES ('{$num_pedido}', '{$data_pedido}', '{$cliente}')";
+        // $sql = "INSERT INTO pedidos (num_pedido, data_pedido, cliente) VALUES ('{$num_pedido}', '{$data_pedido}', '{$cliente}')";
 
-        if (!empty($_POST["senha"])) {
-            $senha = password_hash($_POST["senha"], PASSWORD_DEFAULT);
-            $sql = "UPDATE usuarios SET nome = '$nome', email = '$email', senha = '$senha', data_nasc = '$data_nasc' WHERE id = $id";
-        } else {
-            $sql = "UPDATE usuarios SET nome = '$nome', email = '$email', data_nasc = '$data_nasc' WHERE id = $id";
-        }
+        $sql = "UPDATE pedidos SET num_pedido = '$num_pedido', data_pedido = '$data_pedido', cliente = '$cliente' WHERE id = $id";
+
+        // if (!empty($_POST["senha"])) {
+        //     $senha = password_hash($_POST["senha"], PASSWORD_DEFAULT);
+        //     $sql = "UPDATE usuarios SET num_pedido = '$num_pedido', email = '$email', senha = '$senha', data_nasc = '$data_nasc' WHERE id = $id";
+        // } else {
+        //     $sql = "UPDATE usuarios SET nome = '$nome', email = '$email', data_nasc = '$data_nasc' WHERE id = $id";
+        // }
 
         $res = $connection->query($sql);
 
@@ -108,7 +111,7 @@ switch ($_REQUEST["acao"]) {
         if ($res == true) {
             echo "<div class='col-md-5'>
                 <div class='alert alert-success mt-2 alert-dismissible fade show' role='alert'>
-                    Usuário deletado com sucesso!
+                    Pedido deletado com sucesso!
                 </div>
                 <a href='?page=listar' class='btn btn-success btn-lg btn-block'>Listar Pedidos</a>
                 <br><br>
@@ -119,7 +122,7 @@ switch ($_REQUEST["acao"]) {
             echo "
                 <div class='col-md-5'>
                     <div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                        Não foi Possível Deletar os Dados do Usuário.
+                        Não foi Possível Deletar os Dados do Pedido.
                     </div>
                     <a href='?page=listar' class='btn btn-success btn-lg btn-block'>Listar Pedidos</a>
                     <br><br>

@@ -1,9 +1,19 @@
 <h1> Listar Pedidos </h1>
 
-<div class="container-fluid w-auto d-flex row" style="padding: 0;">
-    <button class="btn btn-white" style="width: min-content;" href="index.php?page=listar">Limpar</button>
-    <form class="d-flex align-items-center" role="search" method="POST" action="?page=listar">
+<div class="container-fluid d-flex" style="padding: 0;">
+    <form method="POST" action="?page=listar">
+        <button class="btn btn-white me-2 border border-dark" type="submit">Limpar</button>
+    </form>
+    <form class="d-flex align-items-center w-100" role="search" method="POST" action="?page=listar">
         <input type="hidden" name="acao" value="pesquisar">
+        <label for="pedido" class="w-100 text-center form-label">Selecione um pedido:</label>
+        <select id="campo" name="campo" class="form-select w-100">
+            <option value="id">ID</option>
+            <option value="num_pedido">Numero do Pedido</option>
+            <option value="data_pedido">Data do Pedido</option>
+            <option value="cliente">Cliente</option>
+        </select>
+        <label for="pesquisa" class="w-100 text-center form-label">Digite o que deseja pesquisar:</label>
         <input class="form-control me-2" style="width: max-content;" type="search" id="search" name="termo" placeholder="Digite sua busca" aria-label="Search" required>
         <button class="btn btn-primary" type="submit">Pesquisar</button>
     </form>
@@ -12,13 +22,17 @@
 <hr>
 
 <?php
-if (!isset($_POST['acao'])) {
+if (!isset($_POST['acao']) || isset($_POST['acao']) === 'limpar') {
     echo "";
 } else {
     echo "<h1>Dados Pesquisados</h1>";
     $termo = $connection->real_escape_string($_POST['termo']);
+    $campo = $connection->real_escape_string($_POST['campo']);
 
-    $sql2 = "SELECT * FROM pedidos WHERE id LIKE '%$termo%' or num_pedido LIKE '%$termo%' or data_pedido LIKE '%$termo%' or cliente LIKE '%$termo%' ORDER BY id DESC";
+    // echo $campo;
+    // echo $termo;
+
+    $sql2 = "SELECT * FROM pedidos  WHERE id LIKE '%$termo%' OR $campo LIKE '%$termo%' ORDER BY id DESC";
     $result = $connection->query($sql2);
 
     if ($result->num_rows > 0) {
@@ -27,7 +41,8 @@ if (!isset($_POST['acao'])) {
         print "<th>Id</th>";
         print "<th>Numero do Pedido</th>";
         print "<th>Data</th>";
-        print "<th>Cliente<th>";
+        print "<th>Cliente</th>";
+        print "<th>Ação</th>";
         print "</tr>";
         while ($row = $result->fetch_assoc()) {
             print "<tr>";
@@ -64,7 +79,8 @@ if ($qtd_registros > 0) {
     print "<th>Id</th>";
     print "<th>Numero do Pedido</th>";
     print "<th>Data</th>";
-    print "<th>Cliente<th>";
+    print "<th>Cliente</th>";
+    print "<th>Ação</th>";
     print "</tr>";
     while ($registros = $res->fetch_object()) {
         print "<tr>";
