@@ -36,3 +36,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">Enviar</button>
 </form>
+<br>
+<a href='?page=listar' class='btn btn-secondary btn-lg'>
+    Cancelar e Voltar
+</a>

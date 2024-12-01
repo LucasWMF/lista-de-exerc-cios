@@ -96,6 +96,8 @@ switch ($_REQUEST['acao'] ?? '') {
             echo "Nenhum registro encontrado.";
         }
 
+        // echo "<p class='fw-bold'></p>";
+        echo "<p class='fw-bold'>Ao clicar em Limpar esse código também será limpo da tela <br> O dowload do código não é com array ele os dados separados por vírgula, esse é algo adicional para testar se os dados estão vindo corretamente para o CSV</p>";
         echo "<pre>";
         print_r($clientes);
         echo "</pre>";

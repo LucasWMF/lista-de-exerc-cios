@@ -21,3 +21,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     <input type="hidden" name="id" value="<?php print $registros->id; ?>">
     <input class='btn btn-danger btn-lg btn-block' type="submit" value="Concordo em Excluir">
 </form>
+<br>
+<a href='?page=listar' class='btn btn-secondary btn-lg'>
+    Cancelar e Voltar
+</a>

@@ -11,8 +11,8 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <a class="navbar-brand p-2" href="index.php">Pedidos</a>
+  <nav class="navbar navbar-expand-lg bg-primary">
+    <a class="navbar-brand p-2 text-light" href="index.php">Atividade 1: CRUD de Pedidos</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -20,13 +20,16 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+          <a class="nav-link text-light" aria-current="page" href="index.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="?page=novo">Registrar Pedidos</a>
+          <a class="nav-link text-light" href="?page=novo">Registrar Pedidos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="?page=listar">Listar Pedidos</a>
+          <a class="nav-link text-light" href="?page=listar">Listar Pedidos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" href="../index.html">Voltar para a Página de Atividades</a>
         </li>
       </ul>
     </div>

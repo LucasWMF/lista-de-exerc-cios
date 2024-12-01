@@ -22,8 +22,5 @@ if ($result->num_rows > 0) {
 }
 
 fclose($output);
-
-// Redirecionando o usuário para a página index.php após o download
-// header("Location: index.php");
-exit; // Garante que o script termine após o redirecionamento
+exit; 
 ?>
